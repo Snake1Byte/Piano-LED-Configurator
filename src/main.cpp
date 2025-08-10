@@ -1,18 +1,25 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+#include "WifiConfig.h"
+#include "ConfigurationManager.h"
+#include "ConfigWebServer.h"
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+WifiConfig& wifiConfig = WifiConfig::getInstance();
+ConfigurationManager& configManager = ConfigurationManager::getInstance();
+ConfigWebServer& webServer = ConfigWebServer::getInstance();
+
+void setup()
+{
+  Serial.begin(115200);
+
+  configManager.setup();
+  wifiConfig.setup();
+  webServer.setup();
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void loop()
+{
+  webServer.loop();
+  configManager.loop();
+  wifiConfig.loop();
 }
