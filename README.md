@@ -1,0 +1,1 @@
+This is a submodule of [Piano-LED](https://github.com/Snake1Byte/Piano-LED), check out that repo for more information.
